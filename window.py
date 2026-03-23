@@ -28,8 +28,8 @@ class Window(QWidget):
         self.btnIniciar.clicked.connect(self.iniciar)
 
         #Crear subprocesos
-        self.pLiebre = SubProceso(self.imgLiebre,500)
-        self.pTortuga = SubProceso(self.imgTortuga,5000)
+        self.pLiebre = SubProceso(self.imgLiebre,50)
+        self.pTortuga = SubProceso(self.imgTortuga,500)
 
         #Conectar señales
         self.pLiebre.actualizar.connect(self.moverLiebre)

@@ -18,22 +18,15 @@ class SubProceso(QThread):
             x = self.label.x()
             y = self.label.y()
             #programar la lógica de la carrera aquí
-
-            # Imagen liebre
-            #self.actualizar.emit("img/liebre.png")
-            #self.sleep(3)
-
-            # Imagen tortuga
-            #self.actualizar.emit("img/tortuga.png")
-            #self.sleep(2)
-
-            #self.actualizar.emit("img/meta.png")
-            #self.sleep(3)
+            print(f"X: {x} Y:{y}")
 
             if x < 550:
                 x += 10
-            else:
-                y += 10
+            elif x > 550 and y < 250:
+                y+=10
+
+            elif x>10:
+                x-=10
 
             self.actualizar.emit(x,y)
             time.sleep(self.tiempo / 1000.0)
