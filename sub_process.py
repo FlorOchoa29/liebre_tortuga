@@ -8,25 +8,36 @@ from PyQt6.QtCore import QThread, pyqtSignal
 class SubProceso(QThread):
     actualizar = pyqtSignal(int,int)
 
-    def __init__(self, label, tiempo):
+    def __init__(self, label, tiempo, tipo):
         super().__init__()
         self.label = label
         self.tiempo = tiempo
+        self.tipo = tipo
 
     def run(self):
+        contador=0
         while True:
             x = self.label.x()
             y = self.label.y()
             #programar la lógica de la carrera aquí
             print(f"X: {x} Y:{y}")
-
-            if x < 550:
+            
+           
+            if x < 550 and y <250 :
                 x += 10
-            elif x > 550 and y < 250:
+
+            elif x >= 550 and y <250 :
                 y+=10
 
-            elif x>10:
+            elif x>10 and y>=250:
                 x-=10
+            
+            contador+=1
+            if self.tipo=="liebre" and 80 <contador <200:
+                time.sleep(3)
+                x -=200
+        
+            
 
             self.actualizar.emit(x,y)
             time.sleep(self.tiempo / 1000.0)
